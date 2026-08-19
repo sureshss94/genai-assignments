@@ -1,0 +1,176 @@
+{
+  "info": {
+    "_postman_id": "56691079-15ea-43ba-a76d-715209f406c3",
+    "name": "Gen_AI_Assignment",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "23457101"
+  },
+  "item": [
+    {
+      "name": "S01-TextToSpeech",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{groq_api_key_03kr}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"model\": \"canopylabs/orpheus-v1-english\",\n  \"voice\": \"troy\",\n  \"response_format\": \"wav\",\n  \"input\": \"[cheerful] I am happy to hear and learning this course, from here I gain from nothing to something. Thanks to test leaf and class friends for valid questions.\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.groq.com/openai/v1/audio/speech",
+          "protocol": "https",
+          "host": [
+            "api",
+            "groq",
+            "com"
+          ],
+          "path": [
+            "openai",
+            "v1",
+            "audio",
+            "speech"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "S02-Multilingual",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{groq_api_key_03kr}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"model\": \"openai/gpt-oss-120b\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are a multilingual AI assistant. Always respond in Tamil, regardless of the language used in the user's input. Translate the user's question into Tamil internally and provide the answer naturally and clearly in Tamil. Do not respond in English unless the user explicitly asks for an English response.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"Can you explain how artificial intelligence is useful in software testing?\"\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.groq.com/openai/v1/chat/completions",
+          "protocol": "https",
+          "host": [
+            "api",
+            "groq",
+            "com"
+          ],
+          "path": [
+            "openai",
+            "v1",
+            "chat",
+            "completions"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "S02-Swagger_Converter",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{auth_secret_03kr}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"model\": \"openai/gpt-oss-120b\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are a senior QA automation engineer and API testing expert. Analyze the provided Swagger/OpenAPI specification and generate comprehensive API test cases. Identify all available endpoints, HTTP methods, parameters, request bodies, required fields, data types, authentication requirements, response codes, and response schemas. Cover positive, negative, boundary, validation, authentication, authorization, and error-handling scenarios. Do not assume functionality that is not defined in the Swagger specification. Present the test cases in a clear table with Test Case ID, Endpoint, HTTP Method, Scenario, Preconditions, Request Details, Expected Status Code, and Expected Result.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"Generate comprehensive API test cases from the following Swagger/OpenAPI specification. Cover valid requests, invalid requests, missing mandatory fields, invalid data types, boundary values, authentication failures, authorization failures, invalid parameters, duplicate data, unsupported methods, and error responses.\\n\\nSwagger/OpenAPI Specification:\\n\\nopenapi: 3.0.0\\ninfo:\\n  title: User Management API\\n  version: 1.0.0\\n  description: API for managing users\\n\\nservers:\\n  - url: https://api.example.com\\n\\npaths:\\n  /users:\\n    get:\\n      summary: Get all users\\n      responses:\\n        '200':\\n          description: Successful response\\n    post:\\n      summary: Create a new user\\n      requestBody:\\n        required: true\\n        content:\\n          application/json:\\n            schema:\\n              type: object\\n              required:\\n                - name\\n                - email\\n                - age\\n              properties:\\n                name:\\n                  type: string\\n                email:\\n                  type: string\\n                  format: email\\n                age:\\n                  type: integer\\n                  minimum: 18\\n                  maximum: 100\\n      responses:\\n        '201':\\n          description: User created successfully\\n        '400':\\n          description: Invalid request\\n\\n  /users/{id}:\\n    get:\\n      summary: Get user by ID\\n      parameters:\\n        - name: id\\n          in: path\\n          required: true\\n          schema:\\n            type: integer\\n      responses:\\n        '200':\\n          description: User found\\n        '404':\\n          description: User not found\\n\\n    delete:\\n      summary: Delete user\\n      parameters:\\n        - name: id\\n          in: path\\n          required: true\\n          schema:\\n            type: integer\\n      responses:\\n        '204':\\n          description: User deleted successfully\\n        '404':\\n          description: User not found\"\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.groq.com/openai/v1/chat/completions",
+          "protocol": "https",
+          "host": [
+            "api",
+            "groq",
+            "com"
+          ],
+          "path": [
+            "openai",
+            "v1",
+            "chat",
+            "completions"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{auth_secret_03kr}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "auth_secret_03kr",
+      "secret": true
+    }
+  ]
+}
