@@ -1,0 +1,145 @@
+CHANGES MADE TO THE USER STORY TO TESTS APPLICATION
+
+1. Jira Story Selection Changed
+
+Original behavior:
+- After connecting to Jira, all available Jira stories were displayed as separate story cards.
+
+New behavior:
+- Jira stories are now displayed in a dropdown.
+- The user can select one Jira story from the dropdown.
+- The screen is cleaner and easier to use when many stories are available.
+
+Usage:
+- Connect to Jira.
+- Select a story from the "Select a Jira User Story" dropdown.
+- The selected story is automatically added to the form.
+
+2. Automatic Form Population
+
+When a Jira story is selected, the following fields are automatically populated:
+
+- Story Title
+- Summary
+- Acceptance Criteria
+- Additional Info
+
+The Additional Info field includes:
+
+- Jira status
+- Assignee
+- Direct Jira issue URL
+
+Usage:
+- Users do not need to manually copy story details from Jira.
+- After selecting a story, they can review or edit the fields before generating test cases.
+
+3. Styled Jira Story Selector Label
+
+The "Select a Jira User Story" label was redesigned with:
+
+- Bold text
+- Uppercase typography
+- Green accent bar
+- Improved spacing
+- Jira-themed colors
+
+Usage:
+- Makes the story selection step more visible and easier to identify.
+
+4. Direct Link to the Selected Jira Story
+
+A new button was added below the dropdown:
+
+"Open STORY-KEY in Jira"
+
+Behavior:
+- Appears after a Jira story is selected.
+- Opens the selected Jira issue in a new browser tab.
+
+Usage:
+- Allows users to quickly verify or review the original Jira story.
+
+5. Direct Link to All Jira Stories
+
+A new button was added:
+
+"Open all stories in Jira"
+
+Behavior:
+- Opens Jira's issue navigator in a new browser tab.
+- Uses the following JQL filter:
+
+issuetype = Story ORDER BY created DESC
+
+Usage:
+- Provides quick access to all Jira Story issues.
+- Users can review stories directly in Jira without searching manually.
+
+6. Reset Button Redesign
+
+Original behavior:
+- The Reset button used a simple gray design.
+
+New design:
+- Glossy red appearance
+- Bold RESET text
+- Rounded corners
+- Hover animation
+- Shadow and gradient effects
+
+Functionality:
+- Clears all form fields.
+- Clears generated results.
+- Clears errors.
+- Disconnects Jira.
+- Removes the selected Jira story.
+- Clears the loaded Jira stories.
+
+7. Download Button Redesign
+
+Original behavior:
+- The Download button used a basic text and emoji style.
+
+New design:
+- Cyan-to-orange gradient
+- Rounded pill shape
+- Circular download icon
+- Hover animation
+- Glossy shadow effects
+
+Functionality:
+- Downloads the generated test cases as an Excel file.
+- Includes test case IDs, titles, categories, steps, test data, and expected results.
+
+8. Backend and API Changes
+
+No backend changes were required.
+
+Reason:
+- The existing Jira API already returned:
+  - Story key
+  - Story summary
+  - Description
+  - Acceptance criteria
+  - Status
+  - Assignee
+  - Jira URL
+
+The existing API response was sufficient to support the dropdown and direct links.
+
+9. Files Modified
+
+Only the following frontend file was modified:
+
+frontend/src/App.tsx
+
+10. Validation Completed
+
+The following validation commands passed:
+
+npm run typecheck
+
+npm run build
+
+The frontend builds successfully. Existing Vite deprecation warnings may still appear, but they do not prevent the application from running.
