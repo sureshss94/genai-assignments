@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#1b1b1b" />
+  <title>UPS Code Reviewer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <header class="ups-header">
+    <div class="ups-header__inner">
+      <div class="ups-brand" aria-label="UPS CodeReview brand">
+        <div class="ups-shield" aria-hidden="true">
+          <svg viewBox="0 0 64 64" role="img" aria-hidden="true">
+            <path d="M32 4 50 9v17c0 14-9.4 24.8-18 31.5C23.4 50.8 14 40 14 26V9l18-5Zm8.5 19.6-9.9 9.9-5.8-5.8 2.5-2.5 3.3 3.3 7.4-7.4 2.5 2.5Z" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="ups-brand__text">UPS CodeReview</div>
+      </div>
+
+      <nav class="ups-nav" aria-label="Main navigation">
+        <a class="ups-nav__link is-active" href="#">Dashboard</a>
+        <a class="ups-nav__link" href="#">Git Repository</a>
+        <a class="ups-nav__link" href="#">Review History</a>
+        <a class="ups-nav__link" href="#">API Docs</a>
+      </nav>
+
+      <div class="ups-header__actions">
+        <div class="ups-status" aria-label="n8n connected status">
+          <span class="ups-status__dot"></span>
+          <span>n8n Connected</span>
+        </div>
+        <div class="ups-user-avatar" aria-label="User profile">SS</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="ups-phase3" aria-label="UPS Code Review dashboard">
+    <aside class="ups-control-panel" aria-label="Code review control panel">
+      <div class="ups-control-panel__header">
+        <span class="ups-kicker">Control</span>
+        <h2>Code Review Control</h2>
+      </div>
+
+      <label class="ups-input-label" for="ups-url">GitHub URL</label>
+      <div class="ups-input-wrap" id="ups-url-wrap">
+        <span class="ups-input-icon" aria-hidden="true">🔗</span>
+        <input id="ups-url" type="url" placeholder="https://raw.githubusercontent.com/..." />
+      </div>
+      <div class="ups-inline-message" id="ups-inline-message" aria-live="polite"></div>
+
+      <div class="ups-checklist" aria-label="Module filters">
+        <label class="ups-check-item">
+          <input type="checkbox" checked />
+          <span>Code Readability</span>
+        </label>
+        <label class="ups-check-item">
+          <input type="checkbox" checked />
+          <span>Efficiency &amp; Robustness</span>
+        </label>
+        <label class="ups-check-item">
+          <input type="checkbox" checked />
+          <span>Best Practices</span>
+        </label>
+      </div>
+
+      <button class="ups-review-button" type="button">Review Code</button>
+
+      <div class="ups-upgrade-card">
+        <div class="ups-upgrade-card__badge">Upgrade</div>
+        <h3>Enterprise review mode</h3>
+        <p>Unlock parallel repository scans, policy baselines, and team-level review history.</p>
+      </div>
+    </aside>
+
+    <main class="ups-review-main" aria-label="Review workspace">
+      <div class="ups-stat-grid" aria-label="Summary metrics">
+        <article class="ups-stat-card ups-stat-card--gold">
+          <div class="ups-stat-card__icon">◎</div>
+          <div>
+            <span id="ups-files-metric">1 File Checked</span>
+            <strong id="ups-files-status">Live scan</strong>
+          </div>
+        </article>
+
+        <article class="ups-stat-card ups-stat-card--amber">
+          <div class="ups-stat-card__icon">★</div>
+          <div>
+            <span id="ups-score-metric">88% Avg Quality Score</span>
+            <strong id="ups-score-status">Strong signal</strong>
+          </div>
+        </article>
+
+        <article class="ups-stat-card ups-stat-card--green">
+          <div class="ups-stat-card__icon">◉</div>
+          <div>
+            <span>Active webhook Sync</span>
+            <strong>Connected</strong>
+          </div>
+        </article>
+      </div>
+
+      <section class="ups-workspace-panel" aria-label="Review workspace panel">
+        <div class="ups-workspace-panel__top">
+          <span class="ups-kicker">Workspace</span>
+          <h2>Review Workspace</h2>
+        </div>
+
+        <div class="ups-review-stage">
+          <div class="ups-review-state ups-review-state--waiting" aria-live="polite">
+            <div class="ups-ring-ring ups-ring-ring--one"></div>
+            <div class="ups-ring-ring ups-ring-ring--two"></div>
+            <div class="ups-ring-ring ups-ring-ring--three"></div>
+            <div class="ups-shield-badge" aria-hidden="true">UPS</div>
+            <p>Enter a GitHub file URL and click “Review Code” to begin analysis.</p>
+          </div>
+
+          <div class="ups-review-state ups-review-state--loading" aria-live="polite" hidden>
+            <div class="ups-laser-beam"></div>
+            <div class="ups-status-ticker" aria-label="Analysis progress status">
+              <span>Analyzing repository structure</span>
+              <span>Checking dependency risks</span>
+              <span>Reviewing best practices</span>
+            </div>
+          </div>
+
+          <div class="ups-review-result" aria-live="polite" hidden>
+            <div class="ups-result-header">
+              <div class="ups-result-header__text">
+                <span class="ups-kicker">Result</span>
+                <h3>Result</h3>
+              </div>
+              <span class="ups-analysis-badge">ANALYSIS COMPLETE</span>
+            </div>
+            <div class="ups-result-body" id="ups-result-body"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="app-shell" style="display:none;">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand-lockup">
+        <div class="brand-mark" aria-hidden="true">UPS</div>
+        <div>
+          <div class="brand-name">UPS</div>
+          <div class="brand-product">Code Reviewer</div>
+        </div>
+      </div>
+
+      <div class="workspace-switcher">
+        <div class="eyebrow">Workspace</div>
+        <button class="workspace-button" type="button">
+          <span class="workspace-avatar">E</span>
+          <span class="workspace-copy"><strong>Engineering</strong><small>Production workspace</small></span>
+          <i data-lucide="chevrons-up-down"></i>
+        </button>
+      </div>
+
+      <nav class="primary-nav" aria-label="Primary navigation">
+        <div class="nav-label">Workspace</div>
+        <button class="nav-item active" type="button" data-view="Overview"><i data-lucide="layout-dashboard"></i><span>Overview</span><span class="nav-indicator"></span></button>
+        <button class="nav-item" type="button" data-view="Review queue"><i data-lucide="list-checks"></i><span>Review queue</span><span class="nav-count">12</span></button>
+        <button class="nav-item" type="button" data-view="Repositories"><i data-lucide="git-branch"></i><span>Repositories</span></button>
+        <button class="nav-item" type="button" data-view="Team insights"><i data-lucide="users"></i><span>Team insights</span></button>
+        <div class="nav-label secondary-label">Manage</div>
+        <button class="nav-item" type="button" data-view="Rules & policies"><i data-lucide="shield-check"></i><span>Rules & policies</span></button>
+        <button class="nav-item" type="button" data-view="Integrations"><i data-lucide="plug-zap"></i><span>Integrations</span></button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="system-status"><span class="status-dot"></span><span>AI engine operational</span><span class="status-pulse"></span></div>
+        <button class="nav-item" type="button" data-view="Settings"><i data-lucide="settings-2"></i><span>Settings</span></button>
+        <div class="user-card"><div class="user-avatar">MS</div><div><strong>Morgan Smith</strong><small>Platform engineering</small></div><i data-lucide="more-horizontal"></i></div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="mobile-menu" id="menuToggle" aria-label="Open navigation"><i data-lucide="menu"></i></button>
+        <div class="breadcrumb"><span>Engineering</span><i data-lucide="chevron-right"></i><strong id="breadcrumbCurrent">Overview</strong></div>
+        <div class="topbar-actions">
+          <button class="icon-button" aria-label="Search" id="searchToggle"><i data-lucide="search"></i></button>
+          <button class="icon-button notification-button" aria-label="Notifications"><i data-lucide="bell"></i><span></span></button>
+          <button class="top-avatar">MS</button>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <section class="page-heading reveal">
+          <div>
+            <div class="section-kicker"><span class="kicker-line"></span> Monday, September 8, 2025</div>
+            <h1>Good morning, Morgan<span class="gold-dot">.</span></h1>
+            <p>Here’s what’s happening across your codebase today.</p>
+          </div>
+          <button class="primary-button" id="newReviewButton"><i data-lucide="plus"></i><span>Start new review</span></button>
+        </section>
+
+        <section class="metrics-grid reveal reveal-delay-1" aria-label="Review metrics">
+          <article class="metric-card metric-highlight"><div class="metric-top"><span>Open reviews</span><i data-lucide="scan-search"></i></div><div class="metric-value">12</div><div class="metric-trend up"><i data-lucide="trending-up"></i><strong>18%</strong><span>vs last week</span></div><div class="metric-sparkline" aria-hidden="true"><span style="height:30%"></span><span style="height:42%"></span><span style="height:35%"></span><span style="height:58%"></span><span style="height:48%"></span><span style="height:72%"></span><span style="height:65%"></span><span style="height:88%"></span><span style="height:78%"></span></div></article>
+          <article class="metric-card"><div class="metric-top"><span>Issues caught</span><i data-lucide="bug"></i></div><div class="metric-value">284</div><div class="metric-trend up"><i data-lucide="trending-up"></i><strong>24%</strong><span>vs last week</span></div><div class="metric-bar"><span style="width:72%"></span></div><small>72% of weekly target</small></article>
+          <article class="metric-card"><div class="metric-top"><span>Avg. review time</span><i data-lucide="timer"></i></div><div class="metric-value">4<span class="metric-unit">m 18s</span></div><div class="metric-trend down"><i data-lucide="trending-down"></i><strong>12%</strong><span>faster than last week</span></div><div class="metric-bar neutral"><span style="width:61%"></span></div><small>Team average: 5m 02s</small></article>
+          <article class="metric-card"><div class="metric-top"><span>Policy coverage</span><i data-lucide="shield-check"></i></div><div class="metric-value">96<span class="metric-unit">%</span></div><div class="metric-trend neutral-text"><i data-lucide="minus"></i><strong>0.4%</strong><span>vs last week</span></div><div class="metric-ring"><span>96%</span></div></article>
+        </section>
+
+        <section class="dashboard-grid reveal reveal-delay-2">
+          <article class="panel review-panel">
+            <div class="panel-heading"><div><div class="panel-eyebrow">Action required</div><h2>Review queue</h2></div><button class="text-button" id="viewQueueButton">View all <i data-lucide="arrow-up-right"></i></button></div>
+            <div class="queue-toolbar"><div class="queue-tabs"><button class="queue-tab active" data-filter="all">All <span>12</span></button><button class="queue-tab" data-filter="critical">Critical <span>3</span></button><button class="queue-tab" data-filter="high">High <span>5</span></button><button class="queue-tab" data-filter="medium">Medium <span>4</span></button></div><button class="filter-button" aria-label="Filter reviews"><i data-lucide="sliders-horizontal"></i></button></div>
+            <div class="review-list" id="reviewList">
+              <div class="review-row" data-severity="critical"><div class="severity critical"></div><div class="review-main"><div class="review-title"><strong>Optimize route assignment query</strong><span class="severity-pill critical-pill">Critical</span></div><div class="review-meta"><span><i data-lucide="git-pull-request"></i> logistics-routing</span><span>PR #4821</span><span>8 min ago</span></div></div><div class="review-owner"><span class="mini-avatar avatar-blue">JL</span><span>Jordan Lee</span></div><button class="row-action" aria-label="Open review"><i data-lucide="arrow-up-right"></i></button></div>
+              <div class="review-row" data-severity="high"><div class="severity high"></div><div class="review-main"><div class="review-title"><strong>Handle null delivery estimate</strong><span class="severity-pill high-pill">High</span></div><div class="review-meta"><span><i data-lucide="git-pull-request"></i> delivery-estimates</span><span>PR #7712</span><span>24 min ago</span></div></div><div class="review-owner"><span class="mini-avatar avatar-gold">AC</span><span>Alex Chen</span></div><button class="row-action" aria-label="Open review"><i data-lucide="arrow-up-right"></i></button></div>
+              <div class="review-row" data-severity="high"><div class="severity high"></div><div class="review-main"><div class="review-title"><strong>Update deprecated auth middleware</strong><span class="severity-pill high-pill">High</span></div><div class="review-meta"><span><i data-lucide="git-pull-request"></i> identity-platform</span><span>PR #1934</span><span>41 min ago</span></div></div><div class="review-owner"><span class="mini-avatar avatar-red">NK</span><span>Nina Kapoor</span></div><button class="row-action" aria-label="Open review"><i data-lucide="arrow-up-right"></i></button></div>
+              <div class="review-row" data-severity="medium"><div class="severity medium"></div><div class="review-main"><div class="review-title"><strong>Reduce duplicate package calls</strong><span class="severity-pill medium-pill">Medium</span></div><div class="review-meta"><span><i data-lucide="git-pull-request"></i> package-scanner</span><span>PR #3408</span><span>1 hr ago</span></div></div><div class="review-owner"><span class="mini-avatar avatar-green">RS</span><span>Riley Singh</span></div><button class="row-action" aria-label="Open review"><i data-lucide="arrow-up-right"></i></button></div>
+            </div>
+          </article>
+
+          <article class="panel activity-panel"><div class="panel-heading"><div><div class="panel-eyebrow">Live feed</div><h2>Recent activity</h2></div><button class="icon-button panel-menu" aria-label="More activity options"><i data-lucide="more-horizontal"></i></button></div><div class="activity-list"><div class="activity-item"><span class="activity-icon green"><i data-lucide="check"></i></span><div><p><strong>Review completed</strong> on <b>fleet-telemetry</b></p><small>by AI Reviewer · 2 min ago</small></div></div><div class="activity-item"><span class="activity-icon gold"><i data-lucide="zap"></i></span><div><p><strong>3 issues auto-fixed</strong> in <b>sortation-core</b></p><small>by AI Reviewer · 16 min ago</small></div></div><div class="activity-item"><span class="activity-icon blue"><i data-lucide="git-merge"></i></span><div><p><strong>Pull request merged</strong> in <b>delivery-estimates</b></p><small>by Alex Chen · 32 min ago</small></div></div><div class="activity-item"><span class="activity-icon purple"><i data-lucide="shield-alert"></i></span><div><p><strong>New policy violation</strong> detected</p><small>in logistics-routing · 48 min ago</small></div></div><div class="activity-item"><span class="activity-icon gray"><i data-lucide="user-plus"></i></span><div><p><strong>Sam Rivera joined</strong> the workspace</p><small>Platform engineering · 1 hr ago</small></div></div></div><button class="activity-footer">See full activity <i data-lucide="arrow-right"></i></button></article>
+        </section>
+
+        <section class="lower-grid reveal reveal-delay-3"><article class="panel insight-panel"><div class="panel-heading"><div><div class="panel-eyebrow">Quality signals</div><h2>Code health overview</h2></div><button class="period-button">Last 7 days <i data-lucide="chevron-down"></i></button></div><div class="chart-wrap"><div class="chart-y-axis"><span>100</span><span>75</span><span>50</span><span>25</span><span>0</span></div><div class="chart"><div class="chart-gridlines"><span></span><span></span><span></span><span></span><span></span></div><svg viewBox="0 0 700 170" preserveAspectRatio="none" aria-label="Code health trend chart"><defs><linearGradient id="chartFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#ffb500" stop-opacity=".25"/><stop offset="1" stop-color="#ffb500" stop-opacity="0"/></linearGradient></defs><path d="M0,127 C34,121 42,90 82,104 S123,125 160,88 S210,58 244,75 S284,110 320,81 S365,66 400,87 S450,93 480,58 S530,35 560,52 S615,81 650,47 S678,30 700,24 L700,170 L0,170 Z" fill="url(#chartFill)"/><path d="M0,127 C34,121 42,90 82,104 S123,125 160,88 S210,58 244,75 S284,110 320,81 S365,66 400,87 S450,93 480,58 S530,35 560,52 S615,81 650,47 S678,30 700,24" fill="none" stroke="#ffb500" stroke-width="3" stroke-linecap="round"/></svg><div class="chart-x-axis"><span>Sep 2</span><span>Sep 3</span><span>Sep 4</span><span>Sep 5</span><span>Sep 6</span><span>Sep 7</span><span>Today</span></div></div></div><div class="chart-legend"><span><i class="legend-dot gold"></i>Quality score</span><span><i class="legend-dot gray"></i>Team baseline</span><strong>+8.4% <small>this week</small></strong></div></article><article class="panel policy-panel"><div class="panel-heading"><div><div class="panel-eyebrow">Guardrails</div><h2>Policy status</h2></div><button class="text-button">Manage <i data-lucide="arrow-up-right"></i></button></div><div class="policy-score"><div class="score-ring"><div><strong>96</strong><span>/ 100</span></div></div><div><strong>Excellent coverage</strong><p>All critical policies are active across 24 repositories.</p></div></div><div class="policy-bars"><div><span>Security</span><strong>100%</strong><div><i style="width:100%"></i></div></div><div><span>Reliability</span><strong>98%</strong><div><i style="width:98%"></i></div></div><div><span>Maintainability</span><strong>91%</strong><div><i style="width:91%"></i></div></div></div></article></section>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="reviewModal" aria-hidden="true"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button class="modal-close" id="modalClose" aria-label="Close"><i data-lucide="x"></i></button><div class="modal-icon"><i data-lucide="scan-search"></i></div><div class="panel-eyebrow">New workspace review</div><h2 id="modalTitle">Start a code review</h2><p>Connect a pull request and let the AI reviewer surface risks, regressions, and policy gaps.</p><label for="repository">Repository</label><div class="select-wrap"><select id="repository"><option>logistics-routing</option><option>delivery-estimates</option><option>identity-platform</option><option>sortation-core</option></select><i data-lucide="chevron-down"></i></div><label for="pullRequest">Pull request URL</label><input id="pullRequest" placeholder="https://github.com/ups/..." /><button class="primary-button modal-submit" id="startReview"><i data-lucide="play"></i><span>Begin AI review</span></button></div></div>
+  <div class="toast" id="toast"><i data-lucide="check-circle-2"></i><span>Review started successfully</span></div>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+Build a complete, end-to-end custom enterprise web UI and n8n workflow integration for an AI Code Reviewer agent themed for United Parcel Service (UPS), incorporating all the following specifications:
+
+1. **Brand & Visual Theme**: 
+   - Use official UPS enterprise colors: deep UPS brown (#231F20 and #1b1b1b) for the background, vibrant UPS gold/yellow (#FFB500) for highlights/buttons, and a supply-chain grid pattern overlay.
+   - Include a sticky navigation bar with a live "n8n Connected" status badge (pulsing green dot) and a user profile avatar with initials "SS".
+
+2. **Input & Webhook Integration**:
+   - Provide a control sidebar with an input field where users can paste any GitHub raw file or pull request URL.
+   - The frontend must send a POST request with the JSON payload `{ "url": "user_input_url" }` to the local n8n webhook endpoint at `http://localhost:5678/webhook/Code_Review`.
+   - The n8n workflow must use a Webhook node, an HTTP Request node (using method GET with URL expression `{{ $json.body.url }}`), a Google Gemini LLM chain, and a Respond to Webhook node returning `{ "review": $json.text }`.
+
+3. **Interactive UI & Animations**:
+   - Implement loading states with a top-to-bottom UPS gold laser scan beam, cycling status text, and form locking during analysis.
+   - Add robust error handling with input validation and a card shake animation if submitted empty.
+   - Display an animated "ANALYSIS COMPLETE" badge when the review finishes.
+
+4. **Proportioned Table Formatting**:
+   - Parse the markdown response from n8n into clean HTML. 
+   - Render tables using responsive styling (`table-layout: fixed; width: 100%;`) with explicit column width allocations (e.g., Parameter 22%, Description 63%, Score 15%) so text-heavy description boxes automatically take up more horizontal space without crowding.
+
+5. **Documentation**:
+   - Provide the complete phase-wise implementation document (Phases 1 through 7) containing clear copy-paste prompts and user-facing verification steps for each stage.

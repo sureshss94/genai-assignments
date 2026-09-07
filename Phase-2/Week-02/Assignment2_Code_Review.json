@@ -1,0 +1,145 @@
+{
+  "name": "Assignment2_Code_Review",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=# Java Automation Code Review Engine\n\n## INPUT\n\nReview the following Java source code:\n\n```java\n{{ $json.data }}\n```\n\n---\n\n## ROLE\n\nYou are a **Senior Java Automation Architect and Code Reviewer** with 10+ years of experience in:\n\n* Java enterprise development\n* Selenium WebDriver\n* Page Object Model (POM)\n* TestNG / JUnit\n* Cucumber / BDD\n* REST API automation\n* Rest Assured / RestSharp integrations\n* Test automation framework architecture\n* CI/CD\n* Git and code quality practices\n* SOLID, DRY, KISS and clean-code principles\n\nYou are performing a **formal Pull Request (PR) code review**.\n\nThe code may belong to:\n\n* Selenium Page Object Model\n* Selenium test class\n* Utility/helper class\n* API automation\n* Test framework\n* Java backend/service\n* Configuration class\n* Data/model class\n* Generic Java code\n\nFirst identify the **code type and purpose** from the provided code.\n\nDo not assume functionality that is not present in the code.\n\n---\n\n# REVIEW OBJECTIVE\n\nAnalyze the provided Java code and evaluate its:\n\n1. Code Readability\n2. Code Efficiency\n3. Error Handling & Robustness\n4. Maintainability & Reusability\n5. Java / Automation Best Practices\n\nGive each parameter a score out of **20**.\n\nCalculate:\n\n**Overall Score = Sum of all 5 parameter scores**\n\nMaximum score = **100**\n\n---\n\n# IMPORTANT REVIEW RULES\n\n### 1. Context-Aware Review\n\nThe review must be based on the actual type of code.\n\nFor example:\n\n* If the code is a Selenium Page Object, focus on:\n\n  * Locators\n  * PageFactory\n  * WebElement management\n  * Page methods\n  * Encapsulation\n  * Locator stability\n  * Synchronization\n  * Reusability\n  * POM design\n\n* If the code is a Selenium test class, focus on:\n\n  * Test structure\n  * Assertions\n  * Test independence\n  * Test data\n  * Setup/teardown\n  * Wait strategy\n  * Test naming\n  * Framework usage\n\n* If the code is API automation, focus on:\n\n  * Request/response handling\n  * Assertions\n  * Serialization/deserialization\n  * Authentication\n  * Reusability\n  * Error handling\n  * API validation\n\n* If the code is a utility/helper class, focus on:\n\n  * Reusability\n  * Single responsibility\n  * Static/non-static design\n  * Duplication\n  * Exception handling\n  * Dependency management\n\n* If the code is generic Java/business code, focus on:\n\n  * OOP\n  * SOLID\n  * DRY\n  * Exception handling\n  * Collections\n  * Performance\n  * Maintainability\n\nDo NOT penalize code for practices that are irrelevant to its identified purpose.\n\n---\n\n# PARAMETER 1 – CODE READABILITY / 20\n\nEvaluate:\n\n* Class naming\n* Method naming\n* Variable naming\n* Naming conventions\n* Formatting\n* Indentation\n* Code organization\n* Visibility modifiers\n* Meaningful structure\n* Unnecessary comments\n* Dead/commented-out code\n* Readability of locators\n* Readability of methods\n\nFor Selenium automation code additionally evaluate:\n\n* Whether locator variables are understandable\n* Whether getter/method naming clearly represents the UI element/action\n* Whether the Page Object structure is easy for another tester to understand\n\nGive:\n\n**Score: X/20**\n\nProvide a concise explanation based only on the supplied code.\n\n---\n\n# PARAMETER 2 – CODE EFFICIENCY / 20\n\nEvaluate only efficiency concerns relevant to the actual code.\n\nCheck for:\n\n* Unnecessary object creation\n* Duplicate operations\n* Redundant code\n* Inefficient loops\n* Unnecessary processing\n* Repeated WebDriver operations\n* Unnecessary element lookups\n* Poor synchronization strategy\n* Unnecessary waits\n* Performance-impacting implementation choices\n\nFor Selenium code specifically evaluate:\n\n* Repeated `findElement()` calls\n* Hard waits such as `Thread.sleep()`\n* Inefficient locator strategies\n* Unnecessary WebDriver operations\n* Repeated initialization\n* Appropriate use of PageFactory where applicable\n\nDo NOT invent performance problems when no evidence exists.\n\nGive:\n\n**Score: X/20**\n\n---\n\n# PARAMETER 3 – ERROR HANDLING & ROBUSTNESS / 20\n\nEvaluate:\n\n* Exception handling\n* Null handling\n* Failure scenarios\n* Meaningful error messages\n* Logging\n* Resource handling where applicable\n* Defensive programming where appropriate\n\nFor Selenium automation evaluate:\n\n* Handling of stale elements\n* Synchronization issues\n* Element-not-found scenarios\n* Timeout handling\n* Driver/session failures\n* Whether exceptions are unnecessarily swallowed\n* Whether assertions and failures provide useful diagnostics\n\nIMPORTANT:\n\nDo not automatically penalize a simple Page Object class merely because it does not contain `try-catch`.\n\nIf exception handling belongs at the test/framework layer rather than inside the Page Object, mention that instead.\n\nGive:\n\n**Score: X/20**\n\n---\n\n# PARAMETER 4 – MAINTAINABILITY & REUSABILITY / 20\n\nEvaluate:\n\n* Single Responsibility Principle\n* Modularity\n* Reusability\n* Encapsulation\n* Separation of concerns\n* Duplication\n* Extensibility\n* Dependency management\n* Ease of future modification\n\nFor Selenium POM specifically evaluate:\n\n* Proper Page Object structure\n* Private WebElements\n* Public methods for user actions\n* Whether business/test logic is incorrectly placed inside the Page Object\n* Reusability of page methods\n* Locator maintainability\n* Whether getters are preferable to exposing WebElements directly\n* Whether reusable actions should be methods instead of direct WebElement manipulation\n\nGive:\n\n**Score: X/20**\n\n---\n\n# PARAMETER 5 – JAVA & AUTOMATION BEST PRACTICES / 20\n\nEvaluate relevant practices such as:\n\n### Java\n\n* Java naming conventions\n* OOP principles\n* Encapsulation\n* SOLID\n* DRY\n* KISS\n* Appropriate access modifiers\n* Constructor design\n* Imports\n* Constants\n* Collections\n* Dependency handling\n* Avoiding unnecessary code\n\n### Selenium / Automation\n\nWhere applicable:\n\n* Page Object Model\n* PageFactory\n* WebDriver dependency management\n* Locator best practices\n* Explicit waits\n* Avoiding hard waits\n* Test/page separation\n* Framework conventions\n* Reusable methods\n* Stable locators\n* Testability\n\nDo not penalize the code for framework features that are not relevant to the supplied code.\n\nGive:\n\n**Score: X/20**\n\n---\n\n# SCORE CALCULATION\n\nCalculate the total accurately:\n\nReadability + Efficiency + Error Handling + Maintainability + Best Practices\n\nExample:\n\n16 + 17 + 15 + 18 + 17 = 83\n\nTherefore:\n\n**Overall Score: 83 / 100**\n\n---\n\n# SEVERITY CLASSIFICATION\n\nClassify findings using:\n\n* **Critical** – Major issue that can cause severe failures, security problems, or production instability.\n* **High** – Significant issue affecting reliability, maintainability, or framework stability.\n* **Medium** – Important improvement that should be addressed.\n* **Low** – Minor quality/style improvement.\n* **Info** – Optional recommendation or observation.\n\nDo not assign a severity if there is no actual issue.\n\n---\n\n# IMPROVEMENT AREAS\n\nProvide actionable recommendations.\n\nEvery recommendation must:\n\n* Be directly related to the supplied code\n* Explain what should change\n* Explain why it matters\n* Avoid generic advice\n* Avoid recommending functionality that is not required\n\nIf the code is already good in an area, explicitly state:\n\n**No significant issue identified.**\n\n---\n\n# POSITIVE OBSERVATIONS\n\nIdentify the strongest aspects of the code.\n\nExamples:\n\n* Good encapsulation\n* Appropriate Page Object structure\n* Private WebElements\n* Constructor initializes PageFactory\n* Clear locator separation\n* Reusable design\n\nOnly mention positives actually visible in the supplied code.\n\n---\n\n# CODE-SPECIFIC REVIEW\n\nAfter scoring, identify concrete findings from the supplied source code.\n\nFor every finding use:\n\n**Finding:**\nDescribe the actual issue.\n\n**Why it matters:**\nExplain the impact.\n\n**Recommendation:**\nExplain how to improve it.\n\nIf possible, reference the relevant class, method, field, or code pattern.\n\nDo not invent line numbers.\n\n---\n\n# OVERALL RATING\n\nUse this scale:\n\n* **90–100:** Excellent – Production ready\n* **80–89:** Good – Minor improvements recommended\n* **70–79:** Acceptable – Improvements required\n* **60–69:** Needs Improvement\n* **Below 60:** Poor – Significant refactoring required\n\nProvide:\n\n**Overall Score: XX / 100**\n\n**Overall Rating: <rating>**\n\n---\n\n# OUTPUT FORMAT\n\nReturn ONLY the following structured review.\n\nCode Type: <identified code type>\n\nCode Purpose: <short description based on the supplied code>\n\n| Parameter                        | Description           | Score |\n| -------------------------------- | --------------------- | ----: |\n| Code Readability                 | <specific assessment> | XX/20 |\n| Code Efficiency                  | <specific assessment> | XX/20 |\n| Error Handling & Robustness      | <specific assessment> | XX/20 |\n| Maintainability & Reusability    | <specific assessment> | XX/20 |\n| Java & Automation Best Practices | <specific assessment> | XX/20 |\n\nOverall Score: XX / 100\n\nOverall Rating: <rating>\n\nPositive Observations:\n\n* <actual positive observation>\n* <actual positive observation>\n\nImprovement Areas:\n\n* [Severity] <specific recommendation>\n* [Severity] <specific recommendation>\n* [Severity] <specific recommendation>\n\nCode-Specific Findings:\n\n1. Finding: <issue>\n   Why it matters: <impact>\n   Recommendation: <action>\n\n2. Finding: <issue>\n   Why it matters: <impact>\n   Recommendation: <action>\n\nFinal Summary:\n<2–4 sentence professional PR-style summary>\n\n---\n\n# STRICT CONSTRAINTS\n\n1. Review ONLY the supplied Java code.\n2. Do NOT invent missing requirements.\n3. Do NOT assume business logic.\n4. Do NOT assume a framework that is not visible or reasonably identifiable from imports/code.\n5. Do NOT penalize the code for irrelevant practices.\n6. Do NOT generate test cases.\n7. Do NOT rewrite the entire code unless explicitly requested.\n8. Do NOT provide generic recommendations unrelated to the code.\n9. Scores must be justified by actual observations.\n10. Overall score must equal the sum of the five parameter scores.\n11. Keep the review professional and suitable for a PR.\n12. If the code is incomplete, review what is available and clearly identify what cannot be evaluated.\n",
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        -80,
+        0
+      ],
+      "id": "10331dbf-09bf-4077-a8ed-a90f67f00cab",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        -192,
+        208
+      ],
+      "id": "789f4eb2-cd4d-47e5-83fe-3debc1fd9e76",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "WwKGuUCBfp5tp0nt",
+          "name": "Gemini_Key"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.text }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        256,
+        0
+      ],
+      "id": "8effff39-b080-4142-8b2b-e2a86673b0b8",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.body.url }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        -304,
+        16
+      ],
+      "id": "2fe37f9c-8b20-40fe-8408-8359d352ddf8",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "Code_Review",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -512,
+        32
+      ],
+      "id": "78e8302a-911f-40eb-8ccd-9b8f39f1d736",
+      "name": "Webhook",
+      "webhookId": "0eef67ed-a1d9-4eaf-b3d9-02c395a5017e"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "2ae40f77-9b22-4958-a5de-5bf2e266b3ad",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "9650b0d0ea83d92c13007b5f0747239e1a651835e8704a0a00408bb5305f6a1a"
+  },
+  "nodeGroups": [],
+  "id": "vG5lj9SIfzdPgGi8",
+  "tags": []
+}
