@@ -1,0 +1,453 @@
+{
+  "info": {
+    "_postman_id": "83010fa5-1566-498c-8457-9aa49c568162",
+    "name": "HR_Resume_Imp",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "23457101"
+  },
+  "item": [
+    {
+      "name": "Phase1_Health_Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/v1/health",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "v1",
+            "health"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Phase2-Mango_DB_connection",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/v1/health/db",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "v1",
+            "health",
+            "db"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Phase3-DB_rediness_Health_Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/v1/resume/health",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "v1",
+            "resume",
+            "health"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Phase4-Resume_Upload_Pdf",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": [
+                "/C:/Users/sures/OneDrive/Documents/genai-assignments/Phase-2/Setup/Week-5/Day-02/Resumes/Resumes (1)/Resumes/ARUN RAJ S M.pdf"
+              ]
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:3000/v1/resume/upload",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "v1",
+            "resume",
+            "upload"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Phase5-Extract_Text_Resume",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": [
+                "/C:/Users/sures/OneDrive/Documents/genai-assignments/Phase-2/Setup/Week-5/Day-02/Resumes/Resumes (1)/Resumes/ARUN RAJ S M.pdf"
+              ]
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:3000/v1/resume/extract",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "v1",
+            "resume",
+            "extract"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Phase6-Resume_Clean",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"rawText\": \"Rajesh Mohan Kumar\\n\\n\\nTest Architect & Senior Agentic Test Engineer   \\n RAG\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/v1/resume/clean",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "v1",
+            "resume",
+            "clean"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Phase8-skills _Extract",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"rawText\": \"SUMMARY\\nAug 2023 - Present\\tAdmin Executive, Tata Consultancy Services. Payroll - Core Integra\\nDetail-oriented Administrative & Operations professional with experience in facility management,\\ncompliance, logistics coordination, and examination operations. Proven expertise in managing cross-\\nfunctional teams, vendor coordination, travel and accommodation arrangements, infrastructure oversight,\\nand regulatory compliance. Additionally experienced as an HR Assistant and Safety Officer in a\\nmanufacturing environment, ensuring workplace safety, policy adherence, and smooth administrative\\nsupport.Having a skills of selenium,playwright,java,restassured,jmeter,k6,postman,MCP (Model Context Protocol),deepeval,Rag. Strong in process improvement, reporting (MIS), and operational efficiency.\\nARUN RAJ S M\\nChennai, Tamil Nadu | +91 87600 28904 | arunrajsm471998@gmail.com\\nADMIN EXECUTIVE\\nTECHNICAL SKILLS\\nPROFESSIONAL EXPERIENCE\\nAdmin Operations\\nFacility Management\\nVendor Coordination\\nMS Office\\nTravel & Logistics\\nNetwork Troubleshooting\\nEHS & Safety\\nSOP Implementation\\nSOP Implementation\\nAdministrative & Operations Management\\nManaged end-to-end administrative operations, ensuring smooth day-to-day functioning of multiple\\ncenters.\\nActed as the Single Point of Contact (SPOC) for internal stakeholders, external vendors, and clients.\\nCoordinated cross-functional teams to ensure operational efficiency and timely issue resolution.\\nMaintained accurate records, documentation, and operational reports.\\nFacility & Infrastructure Management\\nOversaw facility maintenance, infrastructure readiness, and safety compliance.\\nConducted regular inspections to ensure proper functioning of utilities, IT systems, seating, and\\nequipment.\\nCoordinated with facility teams and vendors for preventive maintenance and quick issue resolution.\\nResource, Vendor & Travel Management\\nManaged vendor relationships, service agreements, and SLA adherence.\\nCoordinated logistics including transportation, travel arrangements, and accommodation bookings\\nfor staff and stakeholders.\\nHandled procurement and allocation of resources to optimize cost and operational efficiency.\\nEnsured availability and maintenance of equipment and administrative supplies.\\nCompliance & Risk Management\\nEnsured adherence to organizational policies, security protocols, and regulatory guidelines.\\nImplemented procedures to safeguard data, prevent unauthorized access, and maintain operational\\nintegrity.\\nSupported internal audits and compliance checks.\\n\\nExam & Event Operations\\nCoordinated examination and assessment activities across centers, ensuring seamless execution.\\nLiaised with candidates, invigilators, and support teams to maintain smooth processes.\\nMonitored operations during exam sessions and resolved issues promptly.\\nTeam Coordination & Process Improvement\\nTrained and guided staff on operational procedures and standard protocols.\\nIdentified process gaps and implemented improvements to enhance efficiency and reduce costs.\\nGenerated MIS reports and shared performance insights with senior management for decision-\\nmaking.\\n2018\\nBA English\\nThiruvalluvar University\\n2021\\nMBA\\nAnnamalai University\\nEDUCATION\\nHR Admin & Safety Officer, Visteon Electronics India Pvt Ltd – Chennai (SRB & SFS Units)\\nApr 2022 – Aug 2023\\nSupported HR operations including onboarding, employee documentation, attendance\\nmanagement, and compliance tracking.\\nEnsured adherence to EHS (Environment, Health & Safety) standards across plant and client-side\\noperations.\\nConducted safety inspections, audits, risk assessments, and hazard identification.\\nDelivered safety training sessions, toolbox talks, and awareness programs for employees and\\ncontractors.\\nInvestigated workplace incidents and implemented corrective and preventive actions (CAPA).\\nMaintained statutory records, audit documentation, and safety reports for management review.\\nCoordinated with department heads, contractors, and vendors to ensure operational and safety\\ncompliance\\n\\n\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/v1/resume/skills",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "v1",
+            "resume",
+            "skills"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Phase9-Resume_parser",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"rawText\":\"SUMMARY\\nAug 2023 - Present Admin Executive, Tata Consultancy Services. Payroll - Core Integra\\nDetail-oriented Administrative & Operations professional with experience in facility management,\\ncompliance, logistics coordination, and examination operations. Proven expertise in managing cross-\\nfunctional teams, vendor coordination, travel and accommodation arrangements, infrastructure oversight,\\nand regulatory compliance. Additionally experienced as an HR Assistant and Safety Officer in a\\nmanufacturing environment, ensuring workplace safety, policy adherence, and smooth administrative\\nsupport.Having a skills of selenium,playwright,java,restassured,jmeter,k6,postman,MCP (Model Context Protocol),deepeval,Rag. Strong in process improvement, reporting (MIS), and operational efficiency.\\nARUN RAJ S M\\nChennai, Tamil Nadu | +91 87600 28904 | arunrajsm471998@gmail.com\\nADMIN EXECUTIVE\\nTECHNICAL SKILLS\\nPROFESSIONAL EXPERIENCE\\nAdmin Operations\\nFacility Management\\nVendor Coordination\\nMS Office\\nTravel & Logistics\\nNetwork Troubleshooting\\nEHS & Safety\\nSOP Implementation\\nSOP Implementation\\nAdministrative & Operations Management\\nManaged end-to-end administrative operations, ensuring smooth day-to-day functioning of multiple\\ncenters.\\nActed as the Single Point of Contact (SPOC) for internal stakeholders, external vendors, and clients.\\nCoordinated cross-functional teams to ensure operational efficiency and timely issue resolution.\\nMaintained accurate records, documentation, and operational reports.\\nFacility & Infrastructure Management\\nOversaw facility maintenance, infrastructure readiness, and safety compliance.\\nConducted regular inspections to ensure proper functioning of utilities, IT systems, seating, and\\nequipment.\\nCoordinated with facility teams and vendors for preventive maintenance and quick issue resolution.\\nResource, Vendor & Travel Management\\nManaged vendor relationships, service agreements, and SLA adherence.\\nCoordinated logistics including transportation, travel arrangements, and accommodation bookings\\nfor staff and stakeholders.\\nHandled procurement and allocation of resources to optimize cost and operational efficiency.\\nEnsured availability and maintenance of equipment and administrative supplies.\\nCompliance & Risk Management\\nEnsured adherence to organizational policies, security protocols, and regulatory guidelines.\\nImplemented procedures to safeguard data, prevent unauthorized access, and maintain operational\\nintegrity.\\nSupported internal audits and compliance checks.\\nExam & Event Operations\\nCoordinated examination and assessment activities across centers, ensuring seamless execution.\\nLiaised with candidates, invigilators, and support teams to maintain smooth processes.\\nMonitored operations during exam sessions and resolved issues promptly.\\nTeam Coordination & Process Improvement\\nTrained and guided staff on operational procedures and standard protocols.\\nIdentified process gaps and implemented improvements to enhance efficiency and reduce costs.\\nGenerated MIS reports and shared performance insights with senior management for decision-\\nmaking.\\n2018\\nBA English\\nThiruvalluvar University\\n2021\\nMBA\\nAnnamalai University\\nEDUCATION\\nHR Admin & Safety Officer, Visteon Electronics India Pvt Ltd – Chennai (SRB & SFS Units)\\nApr 2022 – Aug 2023\\nSupported HR operations including onboarding, employee documentation, attendance\\nmanagement, and compliance tracking.\\nEnsured adherence to EHS (Environment, Health & Safety) standards across plant and client-side\\noperations.\\nConducted safety inspections, audits, risk assessments, and hazard identification.\\nDelivered safety training sessions, toolbox talks, and awareness programs for employees and\\ncontractors.\\nInvestigated workplace incidents and implemented corrective and preventive actions (CAPA).\\nMaintained statutory records, audit documentation, and safety reports for manageme\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/v1/resume/parse",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "v1",
+            "resume",
+            "parse"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Phase10-Resume_LLM_parser",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"rawText\":\"SUMMARY\\nAug 2023 - Present Admin Executive, Tata Consultancy Services. Payroll - Core Integra\\nDetail-oriented Administrative & Operations professional with experience in facility management,\\ncompliance, logistics coordination, and examination operations. Proven expertise in managing cross-\\nfunctional teams, vendor coordination, travel and accommodation arrangements, infrastructure oversight,\\nand regulatory compliance. Additionally experienced as an HR Assistant and Safety Officer in a\\nmanufacturing environment, ensuring workplace safety, policy adherence, and smooth administrative\\nsupport.Having a skills of selenium,playwright,java,restassured,jmeter,k6,postman,MCP (Model Context Protocol),deepeval,Rag. Strong in process improvement, reporting (MIS), and operational efficiency.\\nARUN RAJ S M\\nChennai, Tamil Nadu | +91 87600 28904 | arunrajsm471998@gmail.com\\nADMIN EXECUTIVE\\nTECHNICAL SKILLS\\nPROFESSIONAL EXPERIENCE\\nAdmin Operations\\nFacility Management\\nVendor Coordination\\nMS Office\\nTravel & Logistics\\nNetwork Troubleshooting\\nEHS & Safety\\nSOP Implementation\\nSOP Implementation\\nAdministrative & Operations Management\\nManaged end-to-end administrative operations, ensuring smooth day-to-day functioning of multiple\\ncenters.\\nActed as the Single Point of Contact (SPOC) for internal stakeholders, external vendors, and clients.\\nCoordinated cross-functional teams to ensure operational efficiency and timely issue resolution.\\nMaintained accurate records, documentation, and operational reports.\\nFacility & Infrastructure Management\\nOversaw facility maintenance, infrastructure readiness, and safety compliance.\\nConducted regular inspections to ensure proper functioning of utilities, IT systems, seating, and\\nequipment.\\nCoordinated with facility teams and vendors for preventive maintenance and quick issue resolution.\\nResource, Vendor & Travel Management\\nManaged vendor relationships, service agreements, and SLA adherence.\\nCoordinated logistics including transportation, travel arrangements, and accommodation bookings\\nfor staff and stakeholders.\\nHandled procurement and allocation of resources to optimize cost and operational efficiency.\\nEnsured availability and maintenance of equipment and administrative supplies.\\nCompliance & Risk Management\\nEnsured adherence to organizational policies, security protocols, and regulatory guidelines.\\nImplemented procedures to safeguard data, prevent unauthorized access, and maintain operational\\nintegrity.\\nSupported internal audits and compliance checks.\\nExam & Event Operations\\nCoordinated examination and assessment activities across centers, ensuring seamless execution.\\nLiaised with candidates, invigilators, and support teams to maintain smooth processes.\\nMonitored operations during exam sessions and resolved issues promptly.\\nTeam Coordination & Process Improvement\\nTrained and guided staff on operational procedures and standard protocols.\\nIdentified process gaps and implemented improvements to enhance efficiency and reduce costs.\\nGenerated MIS reports and shared performance insights with senior management for decision-\\nmaking.\\n2018\\nBA English\\nThiruvalluvar University\\n2021\\nMBA\\nAnnamalai University\\nEDUCATION\\nHR Admin & Safety Officer, Visteon Electronics India Pvt Ltd – Chennai (SRB & SFS Units)\\nApr 2022 – Aug 2023\\nSupported HR operations including onboarding, employee documentation, attendance\\nmanagement, and compliance tracking.\\nEnsured adherence to EHS (Environment, Health & Safety) standards across plant and client-side\\noperations.\\nConducted safety inspections, audits, risk assessments, and hazard identification.\\nDelivered safety training sessions, toolbox talks, and awareness programs for employees and\\ncontractors.\\nInvestigated workplace incidents and implemented corrective and preventive actions (CAPA).\\nMaintained statutory records, audit documentation, and safety reports for manageme\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/v1/resume/llm-parse",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "v1",
+            "resume",
+            "llm-parse"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Phase11_Embeeding",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Parse the response JSON\r\nconst responseData = pm.response.json();\r\n\r\n// Check if the embedding exists in the response\r\nif (responseData && responseData.embedding) {\r\n    // Convert the array to a JSON string so it can be stored as a variable\r\n    const embeddingString = JSON.stringify(responseData.embedding);\r\n    \r\n    // Store it as a collection variable (accessible across the entire collection)\r\n    pm.collectionVariables.set(\"resumeEmbedding\", embeddingString);\r\n    \r\n    // Alternatively, use pm.environment.set(\"resumeEmbedding\", embeddingString); for an environment variable\r\n    \r\n    console.log(\"resumeEmbedding successfully saved!\");\r\n} else {\r\n    console.log(\"Embedding not found in response.\");\r\n}"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"ARUN RAJ S M\",\r\n    \"role\": \"QA Engineer\",\r\n    \"skills\": [\r\n        \"Python\",\r\n        \"Selenium\"\r\n    ],\r\n    \"company\": \"Example Systems\",\r\n    \"experienceSummary\": \"Automation testing and API validation\",\r\n    \"rawText\": \"SUMMARY\\nAug 2023 - Present Admin Executive, Tata Consultancy Services. Payroll - Core Integra\\nDetail-oriented Administrative & Operations professional with experience in facility management,\\ncompliance, logistics coordination, and examination operations. Proven expertise in managing cross-\\nfunctional teams, vendor coordination, travel and accommodation arrangements, infrastructure oversight,\\nand regulatory compliance. Additionally experienced as an HR Assistant and Safety Officer in a\\nmanufacturing environment, ensuring workplace safety, policy adherence, and smooth administrative\\nsupport.Having a skills of selenium,playwright,java,restassured,jmeter,k6,postman,MCP (Model Context Protocol),deepeval,Rag. Strong in process improvement, reporting (MIS), and operational efficiency.\\nARUN RAJ S M\\nChennai, Tamil Nadu | +91 87600 28904 | arunrajsm471998@gmail.com\\nADMIN EXECUTIVE\\nTECHNICAL SKILLS\\nPROFESSIONAL EXPERIENCE\\nAdmin Operations\\nFacility Management\\nVendor Coordination\\nMS Office\\nTravel & Logistics\\nNetwork Troubleshooting\\nEHS & Safety\\nSOP Implementation\\nSOP Implementation\\nAdministrative & Operations Management\\nManaged end-to-end administrative operations, ensuring smooth day-to-day functioning of multiple\\ncenters.\\nActed as the Single Point of Contact (SPOC) for internal stakeholders, external vendors, and clients.\\nCoordinated cross-functional teams to ensure operational efficiency and timely issue resolution.\\nMaintained accurate records, documentation, and operational reports.\\nFacility & Infrastructure Management\\nOversaw facility maintenance, infrastructure readiness, and safety compliance.\\nConducted regular inspections to ensure proper functioning of utilities, IT systems, seating, and\\nequipment.\\nCoordinated with facility teams and vendors for preventive maintenance and quick issue resolution.\\nResource, Vendor & Travel Management\\nManaged vendor relationships, service agreements, and SLA adherence.\\nCoordinated logistics including transportation, travel arrangements, and accommodation bookings\\nfor staff and stakeholders.\\nHandled procurement and allocation of resources to optimize cost and operational efficiency.\\nEnsured availability and maintenance of equipment and administrative supplies.\\nCompliance & Risk Management\\nEnsured adherence to organizational policies, security protocols, and regulatory guidelines.\\nImplemented procedures to safeguard data, prevent unauthorized access, and maintain operational\\nintegrity.\\nSupported internal audits and compliance checks.\\nExam & Event Operations\\nCoordinated examination and assessment activities across centers, ensuring seamless execution.\\nLiaised with candidates, invigilators, and support teams to maintain smooth processes.\\nMonitored operations during exam sessions and resolved issues promptly.\\nTeam Coordination & Process Improvement\\nTrained and guided staff on operational procedures and standard protocols.\\nIdentified process gaps and implemented improvements to enhance efficiency and reduce costs.\\nGenerated MIS reports and shared performance insights with senior management for decision-\\nmaking.\\n2018\\nBA English\\nThiruvalluvar University\\n2021\\nMBA\\nAnnamalai University\\nEDUCATION\\nHR Admin & Safety Officer, Visteon Electronics India Pvt Ltd – Chennai (SRB & SFS Units)\\nApr 2022 – Aug 2023\\nSupported HR operations including onboarding, employee documentation, attendance\\nmanagement, and compliance tracking.\\nEnsured adherence to EHS (Environment, Health & Safety) standards across plant and client-side\\noperations.\\nConducted safety inspections, audits, risk assessments, and hazard identification.\\nDelivered safety training sessions, toolbox talks, and awareness programs for employees and\\ncontractors.\\nInvestigated workplace incidents and implemented corrective and preventive actions (CAPA).\\nMaintained statutory records, audit documentation, and safety reports for manageme\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:3000/v1/resume/embed",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "3000",
+          "path": [
+            "v1",
+            "resume",
+            "embed"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Phase12_Resume_Store",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"fileName\": \"ARUN RAJ S M.pdf\",\r\n  \"resume\": {\r\n    \"name\": \"ARUN RAJ S M\",\r\n    \"location\": \"Chennai, Tamil Nadu\",\r\n    \"company\": \"Tata Consultancy Services\",\r\n    \"role\": \"Admin Executive\",\r\n    \"education\": \"BA English; MBA\",\r\n    \"skills\": [\r\n      \"Selenium\",\r\n      \"Playwright\",\r\n      \"Java\",\r\n      \"REST Assured\",\r\n      \"JMeter\",\r\n      \"k6\",\r\n      \"Postman\",\r\n      \"MCP (Model Context Protocol)\",\r\n      \"DeepEval\",\r\n      \"RAG\"\r\n    ],\r\n    \"jobTitles\": [\r\n      \"Admin Executive\",\r\n      \"HR Admin & Safety Officer\"\r\n    ]\r\n  },\r\n  \"rawText\": \"Paste the same cleaned resume text used for Phase 11 here\",\r\n  \"embedding\": {{resumeEmbedding}}\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:3000/v1/resume/store",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "3000",
+          "path": [
+            "v1",
+            "resume",
+            "store"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Phase13_ingestion",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": [
+                "/C:/Users/sures/OneDrive/Documents/genai-assignments/Phase-2/Setup/Week-5/Day-02/Resumes/Resumes (1)/Resumes/BUVANESH R .pdf",
+                "/C:/Users/sures/OneDrive/Documents/genai-assignments/Phase-2/Setup/Week-5/Day-02/Resumes/Resumes (1)/Resumes/MohanK_Resume.pdf",
+                "/C:/Users/sures/OneDrive/Documents/genai-assignments/Phase-2/Setup/Week-5/Day-02/Resumes/Resumes (1)/Resumes/Naukri_RajaduraiA[6y_0m].pdf",
+                "/C:/Users/sures/OneDrive/Documents/genai-assignments/Phase-2/Setup/Week-5/Day-02/Resumes/Resumes (1)/Resumes/Naukri_RAJINIROYR[3y_2m].pdf",
+                "/C:/Users/sures/OneDrive/Documents/genai-assignments/Phase-2/Setup/Week-5/Day-02/Resumes/Resumes (1)/Resumes/Naukri_RakeshGhelot[4y_2m].pdf"
+              ]
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://127.0.0.1:3000/v1/resume/ingest",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "3000",
+          "path": [
+            "v1",
+            "resume",
+            "ingest"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Phase-14 Error Validation",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": [
+                "/C:/Users/sures/OneDrive/Documents/genai-assignments/Phase-2/Setup/Week-5/Day-02/Resumes/Resumes (1)/Resumes/BUVANESH R .pdf",
+                "/C:/Users/sures/OneDrive/Documents/genai-assignments/Phase-2/Setup/Week-5/Day-02/Resumes/Resumes (1)/Resumes/MohanK_Resume.pdf",
+                "/C:/Users/sures/OneDrive/Documents/genai-assignments/Phase-2/Setup/Week-5/Day-02/Resumes/Resumes (1)/Resumes/Naukri_RajaduraiA[6y_0m].pdf",
+                "/C:/Users/sures/OneDrive/Documents/genai-assignments/Phase-2/Setup/Week-5/Day-02/Resumes/Resumes (1)/Resumes/Naukri_RAJINIROYR[3y_2m].pdf",
+                "/C:/Users/sures/OneDrive/Documents/genai-assignments/Phase-2/Setup/Week-5/Day-02/Resumes/Resumes (1)/Resumes/Naukri_RakeshGhelot[4y_2m].pdf",
+                "/C:/Users/sures/OneDrive/Documents/genai-assignments/Phase-2/Setup/Week-5/Day-02/Resumes/Resumes (1)/Resumes/Indhumathi_S 1.pdf"
+              ]
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://127.0.0.1:3000/v1/resume/ingest",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "3000",
+          "path": [
+            "v1",
+            "resume",
+            "ingest"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Phase-14 Error Validation-1",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": []
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:3000/v1/resume/upload",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "v1",
+            "resume",
+            "upload"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "resumeEmbedding",
+      "value": ""
+    }
+  ]
+}
